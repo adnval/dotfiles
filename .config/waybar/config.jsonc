@@ -1,0 +1,134 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    // "height": 60, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    // "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "custom/powermenu",
+        "hyprland/workspaces",
+        "custom/updates",
+        "tray"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        // "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "pulseaudio",
+        "battery",
+        "clock"
+    ],
+    // Modules configuration
+    "custom/powermenu": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "exec wlogout -p layer-shell"
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        // "1": "󰲠",
+        // "2": "󰲢",
+        // "3": "󰲤",
+        // "4": "󰲦",
+        // "5": "󰲨",
+        // "6": "󰲪",
+        // "7": "󰲬",
+        // "8": "󰲮",
+        // "9": "󰲰",
+        // "10": "󰿬",
+        // "-99": "",
+        "active": "",
+        "default": ""
+      },
+      "persistent-workspaces": {
+          "eDP-1": 3 
+      }
+    },
+    "custom/updates": {
+      "format": "<span color=\"#61afef\"></span> {}",
+      "tooltip": false,
+      "interval": 3600,
+      "exec": "exec $HOME/.config/waybar/checkupdate.sh"
+    },
+    "tray": {
+        "icon-size": 24,
+        "spacing": 10
+    },
+    "hyprland/window": {
+      "format": " {}",
+      "rewrite": {
+          "(\\d\\. )?(.*) - Chromium": "<span color=\"#4285F4\"></span>  $2 ",
+          "nvim (.*)": "<span color=\"#57A143\"></span>  $1",
+          "nvim": "<span color=\"#57A143\">  Neovim</span> ",
+          "ranger(.*)": "<span color=\"#ffffff\"></span>  $1",
+          "kitty (.*)": "<span color=\"#ffffff\"></span>  $1",
+          "Search(.*)": "<span color=\"#a855f7\"></span>  Search$1"
+      },
+      "separate-outputs": false
+    },
+    "network": {
+      "interface": "wlp0s20f3",
+      "tooltip-format-ethernet": "{ifname} ",
+      "interval": 2,
+      "format": " {bandwidthDownBits}  {bandwidthUpBits}"
+    },
+    "cpu": {
+      "format": "  {usage}%",
+      "tooltip": false
+    },
+    "memory": {
+      "format": "  {}%",
+      "tooltip": false
+    },
+    "temperature": {
+      "format": "{icon} {temperatureC}°C",
+      "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+      "critical-threshold": 80,
+      "format-icons": ["", "", ""]
+    },
+    "pulseaudio": {
+      "format": "{icon}  {volume}%",
+      "format-bluetooth": "{icon} {volume}%",
+      "format-muted": " MUTED",
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", ""]
+      },
+      "scroll-step": 1,
+      "on-click": "pavucontrol"
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰂂"]
+    },
+    "clock": {
+      //"format": "<span color=\"#56b6c2\"></span> {:%H:%M}",
+      "format": "{:%OI:%M %p}",
+      "interval": 60,
+      "tooltip": true,
+      "tooltip-format": "{:%Od %B %H:%M}"
+    }
+}
