@@ -41,6 +41,8 @@ return {
         "clang-format",
         "pylint",
         "eslint_d",
+        "stylelint",
+        "selene",
         -- "clangtidy", -- Embedded in clangd LSP already
       },
     })
