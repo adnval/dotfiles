@@ -78,6 +78,17 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
+    -- Toggle diagnostics keymap
+    keymap.set("n", "<leader>xs", function()
+      if vim.g.diagnostics_active then
+        vim.g.diagnostics_active = false
+        vim.diagnostic.disable()
+      else
+        vim.g.diagnostics_active = true
+        vim.diagnostic.enable()
+      end
+    end, { noremap = true, silent = true, desc = "Toggle inline diagnostics" })
+
     mason_lspconfig.setup_handlers({
       -- default handler for installed servers
       function(server_name)
