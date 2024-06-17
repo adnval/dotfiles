@@ -7,6 +7,7 @@
   margin: 0;
   padding: 0;
 }
+
 #waybar {
   background: @base;
   opacity: 0.85;
@@ -18,8 +19,7 @@
   padding: 0px 5px;
   color: @lavender;
 }
-/* Fix: active workspace doesn't show up */
-/* #workspaces button.focused { */
+
 #workspaces button.active {
   color: @lavender;
 }
@@ -31,20 +31,15 @@
   text-shadow: none;
 }
 
-#custom-powermenu,
-#cpu,
-#temperature,
-#memory,
 #workspaces,
 #clock,
 #window,
 #pulseaudio,
 #custom-updates,
+#backlight,
 #battery,
 #network {
   padding: 4px 8px;
-  /* border: 1px solid red; */
-  /* background-color: @surface0; */
   border-radius: 30px;
   margin: 1px 3px;
 }
@@ -62,9 +57,8 @@
   color: @rosewater;
 }
 
-#custom-powermenu {
-  color: @red;
-  padding-right: 13px;
+#backlight {
+  color: @text;
 }
 
 #battery {
@@ -80,21 +74,8 @@
   color: @text;
 }
 
-#cpu {
-  color: @text;
-}
-
-#temperature {
-  color: @text;
-}
-
-#memory {
-  color: @text;
-}
-
 #network {
   color: @text;
-  min-width: 200px;
 }
 
 #clock {
