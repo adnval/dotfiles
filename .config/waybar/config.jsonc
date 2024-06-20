@@ -1,8 +1,7 @@
 // -*- mode: jsonc -*-
 {
-  "layer": "top", // Waybar at top layer
-  "position": "top", // Waybar position (top|bottom|left|right)
-  // Choose the order of the modules
+  "layer": "top",
+  "position": "top",
   "modules-left": [
     "hyprland/workspaces",
     "custom/updates",
@@ -30,10 +29,10 @@
     }
   },
   "custom/updates": {
-    "format": "<span color=\"#61afef\"> </span> {}",
+    "format": "<span color=\"#b4befe\"></span>  {}",
+    "exec": "exec $HOME/.config/waybar/checkupdate.sh",
     "tooltip": false,
-    "interval": 3600,
-    "exec": "exec $HOME/.config/waybar/checkupdate.sh"
+    "interval": 3600
   },
   "tray": {
     "icon-size": 24,
@@ -45,6 +44,23 @@
       "(.*) — Firefox Nightly": "<span color=\"#b4befe\"></span> $1"
     },
     "separate-outputs": false
+  },
+  "network": {
+    "format": "<span color=\"#b4befe\">{icon}</span>  {essid}",
+    "format-disconnected": "<span color=\"#f38ba8\">{icon}</span>  not connected",
+    "format-icons": {
+      "disconnected": "󰤭",
+      "default": [
+        "󰤯",
+        "󰤟",
+        "󰤢",
+        "󰤥",
+        "󰤨"
+      ]
+    },
+    "tooltip": true,
+    "tooltip-format": " {bandwidthDownBytes}  {bandwidthUpBytes}",
+    "on-click": "nm-connection-editor"
   },
   "pulseaudio": {
     "format": "<span color=\"#b4befe\">{icon}</span>  {volume}%",
@@ -58,66 +74,50 @@
     },
     "tooltip": false,
     "reverse-scrolling": true,
-    "scroll-step": 1,
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
     "on-click-right": "pavucontrol"
-  },
-  "network": {
-    "interface": "wlp0s20f3",
-    "format": "<span color=\"#b4befe\">{icon}</span>  {essid}",
-    "format-disconnected": "<span color=\"#f38ba8\">{icon}</span>  not connected",
-    "tooltip-format": " {bandwidthDownBytes}  {bandwidthUpBytes}",
-    "format-icons": {
-      "disconnected": "󰤭",
-      "default": [
-        "󰤯",
-        "󰤟",
-        "󰤢",
-        "󰤥",
-        "󰤨"
-      ]
-    },
-    "on-click": "nm-connection-editor"
   },
   "backlight": {
     "format": "<span color=\"#b4befe\">{icon}</span> {percent}%",
     "format-icons": [
       "󰖨"
     ],
-    "tooltip": false
+    "tooltip": false,
+    "reverse-scrolling": true
   },
   "battery": {
     "states": {
-      // "good": 95,
       "warning": 30,
       "critical": 15
     },
     "format": "<span color=\"#b4befe\">{icon}</span> {capacity}%",
-    "format-full": "<span color=\"#b4befe\">{icon}</span> {capacity}%",
-    "format-charging": "<span color=\"#b4befe\">󰂄</span> {capacity}%",
-    "format-plugged": "<span color=\"#b4befe\"></span> {capacity}%",
-    "format-alt": "<span color=\"#b4befe\">{icon}</span> {time}",
-    // "format-good": "", // An empty format will hide the module
-    // "format-full": "",
-    "format-icons": [
-      "󰂎",
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󰂂"
-    ]
+    "format-charging": "<span color=\"#a6e3a1\">{icon}</span> {capacity}%",
+    "format-warning": "<span color=\"#fab387\">{icon}</span> {capacity}%",
+    "format-critical": "<span color=\"#f38ba8\">{icon}</span> {capacity}%",
+    "format-icons": {
+      "charging": "󰂄",
+      // "warning": "󰂃",
+      "critical": "󰂃",
+      "default": [
+        "󰂎",
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰂂"
+      ]
+    },
+    "interval": 60
   },
   "clock": {
-    //"format": "<span color=\"#56b6c2\"></span> {:%H:%M}",
     "format": "{:%OI:%M %p}",
-    "interval": 60,
     "tooltip": true,
-    "tooltip-format": "{:%Od %B %H:%M}"
+    "tooltip-format": "{:%Od %B %H:%M}",
+    "interval": 60
   }
 }
