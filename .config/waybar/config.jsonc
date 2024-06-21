@@ -32,7 +32,9 @@
     "format": "<span color=\"#b4befe\"></span>  {}",
     "exec": "exec $HOME/.config/waybar/checkupdate.sh",
     "tooltip": false,
-    "interval": 3600
+    "interval": 3600,
+    "on-click": "exec $HOME/.config/waybar/checkupdate.sh",
+    "on-click-right": "kitty sh -c 'yay'"
   },
   "tray": {
     "icon-size": 24,
