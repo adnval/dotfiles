@@ -1,0 +1,19 @@
+# OBJECT FILES #
+################
+*.o
+
+# EXECUTABLES #
+###############
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# PROJECT SPECIFIC #
+####################
+dwm
+dmenu
+st
+config.h
