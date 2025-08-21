@@ -14,6 +14,9 @@
 # PROJECT SPECIFIC #
 ####################
 dwm
+!dwm/
 dmenu
+!dmenu/
 st
+!st/
 config.h
